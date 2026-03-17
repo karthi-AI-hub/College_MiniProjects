@@ -11,60 +11,22 @@ if (!isset($_SESSION['admin']) && basename($_SERVER['PHP_SELF']) != 'login.php')
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Management System</title>
-    <!-- Bootstrap 5 CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Masterminds | College Command</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
+    <!-- Masterminds Core -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
+    
+    <script>
+        function toggleSidebar() {
+            document.getElementById('wrapper').classList.toggle('toggled');
         }
-        #wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
-        #sidebar-wrapper {
-            min-width: 250px;
-            max-width: 250px;
-            background-color: #343a40;
-            color: #fff;
-        }
-        #page-content-wrapper {
-            flex: 1;
-            padding: 20px;
-        }
-        .sidebar-heading {
-            padding: 20px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-align: center;
-            border-bottom: 1px solid #4b545c;
-        }
-        .list-group-item {
-            background-color: transparent;
-            color: #ccc;
-            border: none;
-        }
-        .list-group-item:hover, .list-group-item.active {
-            background-color: #495057;
-            color: #fff;
-        }
-        /* Print Styles */
-        @media print {
-            #sidebar-wrapper, .navbar, .btn-print-hide {
-                display: none !important;
-            }
-            #page-content-wrapper {
-                padding: 0;
-                margin: 0;
-            }
-        }
-    </style>
+    </script>
 </head>
 <body>
     <div id="wrapper">

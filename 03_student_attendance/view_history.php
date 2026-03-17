@@ -7,6 +7,7 @@ require_once 'config.php';
 $selected_date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 $selected_month = isset($_GET['month']) ? $_GET['month'] : date('m');
 $selected_year = isset($_GET['year']) ? $_GET['year'] : date('Y');
+$active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'daily';
 
 // Fetch History for Selected Date
 $history_query = "SELECT s.name, s.roll_no, s.class_section, ar.status 
@@ -33,18 +34,19 @@ $percentage_result = $conn->query($percentage_query);
 
 <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-        <button class="nav-link active text-dark fw-bold" id="daily-tab" data-bs-toggle="tab" data-bs-target="#daily" type="button" role="tab">Daily View</button>
+        <button class="nav-link text-dark fw-bold <?php echo ($active_tab === 'daily') ? 'active' : ''; ?>" id="daily-tab" data-bs-toggle="tab" data-bs-target="#daily" type="button" role="tab">Daily View</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link text-dark fw-bold" id="monthly-tab" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab">Monthly Percentage</button>
+        <button class="nav-link text-dark fw-bold <?php echo ($active_tab === 'monthly') ? 'active' : ''; ?>" id="monthly-tab" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab">Monthly Percentage</button>
     </li>
 </ul>
 
 <div class="tab-content" id="myTabContent">
     
     <!-- Daily View Tab -->
-    <div class="tab-pane fade show active p-3 bg-white border border-top-0 rounded-bottom" id="daily" role="tabpanel">
+    <div class="tab-pane fade p-3 bg-white border border-top-0 rounded-bottom <?php echo ($active_tab === 'daily') ? 'show active' : ''; ?>" id="daily" role="tabpanel">
         <form action="" method="get" class="row g-3 align-items-center mb-4">
+            <input type="hidden" name="tab" value="daily">
             <div class="col-auto">
                 <label for="date" class="col-form-label fw-bold">Select Date:</label>
             </div>
@@ -93,8 +95,9 @@ $percentage_result = $conn->query($percentage_query);
     </div>
 
     <!-- Monthly Stats Tab -->
-    <div class="tab-pane fade p-3 bg-white border border-top-0 rounded-bottom" id="monthly" role="tabpanel">
+    <div class="tab-pane fade p-3 bg-white border border-top-0 rounded-bottom <?php echo ($active_tab === 'monthly') ? 'show active' : ''; ?>" id="monthly" role="tabpanel">
         <form action="" method="get" class="row g-3 align-items-center mb-4">
+            <input type="hidden" name="tab" value="monthly">
             <input type="hidden" name="date" value="<?php echo $selected_date; ?>"> <!-- Keep daily date selected -->
             <div class="col-auto">
                 <label class="col-form-label fw-bold">Select Month/Year:</label>
@@ -169,11 +172,6 @@ $percentage_result = $conn->query($percentage_query);
         </div>
     </div>
 </div>
-
-<script>
-    // Keep tab active on reload if possible (simple JS logic)
-    // Or just let user click. For simplicity, default is Daily View.
-</script>
 
 <?php
 include 'includes/footer.php';

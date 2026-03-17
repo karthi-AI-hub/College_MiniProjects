@@ -40,51 +40,105 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | BloodLife</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         body {
-            background-color: #dc3545;
-            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: linear-gradient(rgba(220, 53, 69, 0.9), rgba(220, 53, 69, 0.9)), url('https://images.unsplash.com/photo-1579154235602-4c070f3f27a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            height: 100vh;
+            background: var(--dark-bg);
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1579154235602-4c070f3f27a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
+            background-position: center;
         }
         .login-card {
-            background: #fff;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
             width: 100%;
             max-width: 400px;
+            padding: 40px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .login-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 14px;
+            border-radius: 12px;
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-color);
+            color: #fff;
+            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.1);
+        }
+        .form-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 <body>
 
-<div class="login-card text-center">
-    <i class="fas fa-heartbeat fa-4x text-danger mb-4"></i>
-    <h2 class="fw-bold mb-1">BloodLife</h2>
-    <p class="text-muted mb-4">Centralized Donor Command</p>
-
+<div class="login-card">
+    <h1 class="login-title">BloodLife</h1>
     <?php if($error): ?>
-        <div class="alert alert-danger py-2 small"><?php echo $error; ?></div>
+        <div class="alert alert-danger border-0 bg-danger bg-opacity-10 text-danger py-2 small"><?php echo $error; ?></div>
     <?php endif; ?>
-
-    <form action="" method="post" class="text-start">
-        <div class="mb-3">
-            <label class="form-label fw-bold">Admin Identifier</label>
+    <form action="" method="post">
+        <div class="mb-4">
+            <label class="form-label">Admin Identifier</label>
             <input type="text" name="username" class="form-control" placeholder="admin" required>
         </div>
         <div class="mb-4">
-            <label class="form-label fw-bold">Access Token</label>
-            <input type="password" name="password" class="form-control" placeholder="admin123" required>
+            <label class="form-label">Access Token</label>
+            <div class="input-group">
+                <input type="password" name="password" id="password" class="form-control" placeholder="admin123" required>
+                <button class="btn btn-light toggle-password" type="button" data-target="password" aria-label="Show password">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-danger w-100 btn-lg fw-bold">INITIATE SESSION</button>
+        <div class="d-grid mt-5">
+            <button type="submit" class="btn btn-danger py-3 fw-bold">Sign In <i class="fas fa-heartbeat ms-2"></i></button>
+        </div>
     </form>
 </div>
+
+<script>
+    document.querySelectorAll('.toggle-password').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var target = document.getElementById(button.dataset.target);
+            if (!target) return;
+            var isPassword = target.type === 'password';
+            target.type = isPassword ? 'text' : 'password';
+            var icon = button.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye', !isPassword);
+                icon.classList.toggle('fa-eye-slash', isPassword);
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

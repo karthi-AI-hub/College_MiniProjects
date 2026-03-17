@@ -68,8 +68,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h2 class="mt-4">Edit Student</h2>
-<hr>
+<div class="executive-header">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="outfit fw-700 h3 mb-1">Edit Student</h1>
+            <p class="text-muted small mb-0">Modify academic profile: <span class="text-primary fw-600"><?php echo htmlspecialchars($student['name']); ?></span></p>
+        </div>
+        <a href="view_students.php" class="btn btn-light btn-sm px-3 border"><i class="fas fa-arrow-left me-1"></i> Back to Directory</a>
+    </div>
+</div>
+
+<div class="container-fluid">
 
 <?php if($message): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -138,12 +147,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Update Student</button>
-            <a href="view_students.php" class="btn btn-secondary">Cancel</a>
+            <div class="mt-4 pt-4 border-top">
+                <button type="submit" class="btn btn-primary px-4 fw-600">
+                    <i class="fas fa-save me-2"></i> Update Student Profile
+                </button>
+                <a href="view_students.php" class="btn btn-light border px-4 ms-2">Cancel</a>
+            </div>
         </form>
     </div>
-</div>
-
+</div> <!-- End container-fluid -->
 <?php
 include 'includes/footer.php';
 ?>

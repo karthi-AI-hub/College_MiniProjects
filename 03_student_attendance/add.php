@@ -27,30 +27,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<div class="container-fluid">
-    <h2 class="mt-4">Register New Student</h2>
-    <hr>
-    <?php if($message): ?><div class="alert alert-success"><?php echo $message; ?></div><?php endif; ?>
-    <?php if($error): ?><div class="alert alert-danger"><?php echo $error; ?></div><?php endif; ?>
+<div class="executive-header">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="outfit fw-700 h3 mb-1">Personnel Induction</h1>
+            <p class="text-muted small mb-0">Append a new civilian to the institutional registry node.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="index.php" class="btn btn-light btn-sm px-3 border">
+                <i class="fas fa-arrow-left me-1"></i> Registry
+            </a>
+        </div>
+    </div>
+</div>
 
-    <div class="card shadow">
-        <div class="card-body">
-            <form action="" method="post">
-                <div class="mb-3">
-                    <label class="form-label">Full Name</label>
-                    <input type="text" name="name" class="form-control" required>
+<div class="container-fluid">
+    <?php if($message): ?>
+        <div class="alert alert-success border-0 bg-success bg-opacity-10 text-success small mb-4 py-2">
+            <i class="fas fa-check-circle me-2"></i> <?php echo $message; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if($error): ?>
+        <div class="alert alert-danger border-0 bg-danger bg-opacity-10 text-danger small mb-4 py-2">
+            <i class="fas fa-exclamation-triangle me-2"></i> <?php echo $error; ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-sm overflow-hidden">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h5 class="card-title mb-0 outfit fw-600">Personnel Profile Data</h5>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Roll Number</label>
-                    <input type="text" name="roll_no" class="form-control" required>
+                <div class="card-body p-4">
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="col-md-7 mb-4">
+                                <label class="form-label small fw-700 text-muted mb-1">LEGAL IDENTITY NAME</label>
+                                <input type="text" name="name" class="form-control" placeholder="Institutional Name" required>
+                            </div>
+                            <div class="col-md-5 mb-4">
+                                <label class="form-label small fw-700 text-muted mb-1">ROLL IDENTIFIER</label>
+                                <input type="text" name="roll_no" class="form-control" placeholder="S-XXX" required>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <label class="form-label small fw-700 text-muted mb-1">SECTOR / CLASS ASSIGNMENT</label>
+                            <input type="text" name="class_section" class="form-control" placeholder="e.g. 10-A" required>
+                        </div>
+                        <div class="mt-4 pt-4 border-top d-flex gap-2">
+                            <button type="submit" class="btn btn-primary flex-grow-1 fw-700 py-3 text-uppercase tracking-widest" style="font-size: 0.75rem;">
+                                <i class="fas fa-save me-2"></i> Commit to Cloud
+                            </button>
+                            <a href="index.php" class="btn btn-light border px-4 fw-700 py-3 text-uppercase tracking-widest" style="font-size: 0.75rem;">Abort</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Class & Section</label>
-                    <input type="text" name="class_section" class="form-control" placeholder="e.g. 10-A" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Save Student</button>
-                <a href="index.php" class="btn btn-secondary">Back to Dashboard</a>
-            </form>
+            </div>
         </div>
     </div>
 </div>

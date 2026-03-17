@@ -48,3 +48,13 @@ INSERT INTO events (title, type_id, event_date, venue, organizer, description) V
 ('Yoga Workshop', 2, '2026-02-20', 'College Gym', 'Student Council', 'Hands-on training session for beginners.'),
 ('Annual Fest', 3, '2025-12-10', 'Open Grounds', 'Cultural Club', 'The biggest celebration of the year (Completed).'),
 ('Inter-College Cricket', 4, '2026-04-05', 'Sports Complex', 'Sports Dept', 'A high-stakes tournament.');
+
+-- Additional Mock Events
+INSERT INTO events (id, title, type_id, event_date, venue, organizer, description) VALUES
+(5, 'Research Expo', 6, '2026-05-08', 'Innovation Center', 'Research Cell', 'Showcase of student and faculty research.'),
+(6, 'Startup Pitch Night', 1, '2026-02-28', 'Seminar Hall B', 'Entrepreneurship Club', 'Live startup demo day with mentors.'),
+(7, 'Alumni Connect', 5, '2025-11-18', 'Auditorium Annex', 'Alumni Office', 'Networking session with alumni leaders.'),
+(8, 'AI Ethics Roundtable', 1, '2026-03-02', 'Board Room', 'Computer Science Dept', 'Panel discussion on responsible AI.'),
+(9, 'Photography Walk', 3, '2026-02-22', 'Campus Garden', 'Arts Club', 'Creative photography showcase.'),
+(10, 'Basketball League', 4, '2026-03-20', 'Indoor Stadium', 'Sports Dept', 'Inter-department league matches.')
+ON DUPLICATE KEY UPDATE title=VALUES(title), type_id=VALUES(type_id), event_date=VALUES(event_date), venue=VALUES(venue), organizer=VALUES(organizer), description=VALUES(description);

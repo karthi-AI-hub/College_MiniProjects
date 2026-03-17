@@ -44,3 +44,13 @@ CREATE TABLE IF NOT EXISTS transactions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
+
+-- Seed Transactions
+INSERT INTO transactions (id, book_id, student_name, issue_date, return_date, status) VALUES
+(1, (SELECT id FROM books WHERE isbn = '978-0132350884'), 'Aarav Mehta', '2026-01-12', NULL, 'Active'),
+(2, (SELECT id FROM books WHERE isbn = '978-0201616224'), 'Priya Nair', '2026-01-05', '2026-01-20', 'Returned'),
+(3, (SELECT id FROM books WHERE isbn = '978-0201633610'), 'Rohan Kulkarni', '2026-02-02', NULL, 'Active'),
+(4, (SELECT id FROM books WHERE isbn = '978-0262033848'), 'Meera Shah', '2025-12-18', '2026-01-06', 'Returned'),
+(5, (SELECT id FROM books WHERE isbn = '978-0596007126'), 'Lina Roy', '2026-02-06', NULL, 'Active'),
+(6, (SELECT id FROM books WHERE isbn = '978-0132350884'), 'Sameer Khan', '2026-01-22', '2026-02-01', 'Returned')
+ON DUPLICATE KEY UPDATE book_id=VALUES(book_id), student_name=VALUES(student_name), issue_date=VALUES(issue_date), return_date=VALUES(return_date), status=VALUES(status);

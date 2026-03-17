@@ -2,13 +2,13 @@
 session_start();
 require_once 'config.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+if (!isset($_SESSION['admin'])) {
+    header("Location: view_animals.php?msg=auth");
     exit();
 }
 
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = (int)$_GET['id'];
     
     // Using prepared statement to prevent SQL injection
     $stmt = $conn->prepare("DELETE FROM livestock WHERE id = ?");

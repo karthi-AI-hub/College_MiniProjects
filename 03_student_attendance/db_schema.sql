@@ -46,3 +46,22 @@ CREATE TABLE IF NOT EXISTS attendance_records (
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
     UNIQUE KEY unique_attendance (student_id, attendance_date) -- Prevent duplicate entries for same student on same day
 );
+
+-- Seed Attendance Records
+INSERT INTO attendance_records (student_id, attendance_date, status) VALUES
+((SELECT id FROM students WHERE roll_no = 'S001'), '2026-02-10', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S002'), '2026-02-10', 'Absent'),
+((SELECT id FROM students WHERE roll_no = 'S003'), '2026-02-10', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S004'), '2026-02-10', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S005'), '2026-02-10', 'Absent'),
+((SELECT id FROM students WHERE roll_no = 'S006'), '2026-02-11', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S007'), '2026-02-11', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S008'), '2026-02-11', 'Absent'),
+((SELECT id FROM students WHERE roll_no = 'S009'), '2026-02-11', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S010'), '2026-02-11', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S001'), '2026-02-09', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S002'), '2026-02-09', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S003'), '2026-02-09', 'Absent'),
+((SELECT id FROM students WHERE roll_no = 'S004'), '2026-02-09', 'Present'),
+((SELECT id FROM students WHERE roll_no = 'S005'), '2026-02-09', 'Present')
+ON DUPLICATE KEY UPDATE status=VALUES(status);

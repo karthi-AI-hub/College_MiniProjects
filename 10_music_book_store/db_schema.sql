@@ -50,3 +50,12 @@ INSERT INTO inventory (title, creator, type_id, price, release_year, genre) VALU
 ('The Silent Echo', 'Marcus Thorne', 4, 9.99, 2023, 'Mystery/Thriller'),
 ('Weekly Tech Review', 'Digital Press', 5, 4.50, 2026, 'Technology')
 ON DUPLICATE KEY UPDATE title=title;
+
+-- Additional Mock Inventory
+INSERT INTO inventory (id, title, creator, type_id, price, release_year, genre) VALUES
+(6, 'Solar Winds', 'Ava Monroe', 2, 11.50, 2024, 'Ambient'),
+(7, 'Design Systems 101', 'Kiran Bhat', 1, 22.00, 2025, 'Design'),
+(8, 'Night Drive', 'Pulse City', 3, 1.49, 2025, 'Synthwave'),
+(9, 'Data Structures Quickstart', 'Nora Fields', 4, 7.99, 2024, 'Education'),
+(10, 'Lo-Fi Study Beats', 'Studio Loft', 2, 9.49, 2023, 'Lo-Fi')
+ON DUPLICATE KEY UPDATE title=VALUES(title), creator=VALUES(creator), type_id=VALUES(type_id), price=VALUES(price), release_year=VALUES(release_year), genre=VALUES(genre);

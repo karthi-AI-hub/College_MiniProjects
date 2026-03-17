@@ -45,3 +45,14 @@ CREATE TABLE IF NOT EXISTS livestock (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
+
+-- Seed Livestock
+INSERT INTO livestock (tag_id, category_id, breed, age, weight, health_status, last_checkup_date) VALUES
+('CAT-001', (SELECT id FROM categories WHERE category_name = 'Cattle'), 'Holstein Friesian', '2 years', 420.5, 'Healthy', '2026-01-18'),
+('CAT-002', (SELECT id FROM categories WHERE category_name = 'Cattle'), 'Jersey', '3 years', 390.0, 'Under Observation', '2026-01-28'),
+('POUL-101', (SELECT id FROM categories WHERE category_name = 'Poultry'), 'Rhode Island Red', '8 months', 2.1, 'Healthy', '2026-02-01'),
+('SHP-050', (SELECT id FROM categories WHERE category_name = 'Sheep'), 'Merino', '1.5 years', 55.8, 'Sick', '2026-02-05'),
+('GOT-014', (SELECT id FROM categories WHERE category_name = 'Goat'), 'Boer', '2 years', 68.0, 'Healthy', '2026-01-22'),
+('PIG-007', (SELECT id FROM categories WHERE category_name = 'Pig'), 'Large White', '1 year', 95.3, 'Under Observation', '2026-01-30'),
+('HRS-021', (SELECT id FROM categories WHERE category_name = 'Horse'), 'Arabian', '4 years', 430.0, 'Healthy', '2026-02-02')
+ON DUPLICATE KEY UPDATE breed=VALUES(breed), age=VALUES(age), weight=VALUES(weight), health_status=VALUES(health_status), last_checkup_date=VALUES(last_checkup_date);

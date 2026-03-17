@@ -69,86 +69,108 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
-    <h2 class="text-success">Edit Livestock Record</h2>
-    <a href="view_animals.php" class="btn btn-secondary">Back to List</a>
+<div class="executive-header">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="outfit fw-700 h3 mb-1">Modify Profile</h1>
+            <p class="text-muted small mb-0">Update institutional record for animal <strong><?php echo htmlspecialchars($animal['tag_id']); ?></strong>.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="view_animals.php" class="btn btn-light btn-sm px-3 border">
+                <i class="fas fa-arrow-left me-1"></i> Back to Registry
+            </a>
+        </div>
+    </div>
 </div>
 
+<div class="container-fluid">
+
 <?php if($message): ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <?php echo $message; ?>
+    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm" role="alert">
+        <i class="fas fa-check-circle me-2"></i> <?php echo $message; ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php endif; ?>
 
 <?php if($error): ?>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <?php echo $error; ?>
+    <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
+        <i class="fas fa-exclamation-circle me-2"></i> <?php echo $error; ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php endif; ?>
 
-<div class="card shadow-sm">
-    <div class="card-body">
-        <form action="" method="post">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Tag ID <span class="text-danger">*</span></label>
-                    <input type="text" name="tag_id" class="form-control" value="<?php echo htmlspecialchars($animal['tag_id']); ?>" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Category <span class="text-danger">*</span></label>
-                    <select name="category_id" class="form-select" required>
-                        <option value="">Select Category</option>
-                        <?php 
-                        if ($categories->num_rows > 0) {
-                            $categories->data_seek(0);
-                            while($row = $categories->fetch_assoc()) {
-                                $selected = ($animal['category_id'] == $row['id']) ? 'selected' : '';
-                                echo "<option value='" . $row['id'] . "' $selected>" . htmlspecialchars($row['category_name']) . "</option>";
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card border-0 shadow-sm overflow-hidden">
+            <div class="card-header bg-white py-3 border-bottom">
+                <h5 class="card-title mb-0 outfit fw-600">Administrative Record Edit</h5>
             </div>
+            <div class="card-body p-4">
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label small fw-600 text-muted mb-1">TAG IDENTIFICATION</label>
+                            <input type="text" name="tag_id" class="form-control" value="<?php echo htmlspecialchars($animal['tag_id']); ?>" required>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label small fw-600 text-muted mb-1">TAXONOMY CATEGORY</label>
+                            <select name="category_id" class="form-select" required>
+                                <option value="">Select Category</option>
+                                <?php 
+                                if ($categories->num_rows > 0) {
+                                    $categories->data_seek(0);
+                                    while($row = $categories->fetch_assoc()) {
+                                        $selected = ($animal['category_id'] == $row['id']) ? 'selected' : '';
+                                        echo "<option value='" . $row['id'] . "' $selected>" . htmlspecialchars($row['category_name']) . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
 
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Breed</label>
-                    <input type="text" name="breed" class="form-control" value="<?php echo htmlspecialchars($animal['breed']); ?>">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Age</label>
-                    <input type="text" name="age" class="form-control" value="<?php echo htmlspecialchars($animal['age']); ?>">
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label small fw-600 text-muted mb-1">SPECIFIC BREED</label>
+                            <input type="text" name="breed" class="form-control" value="<?php echo htmlspecialchars($animal['breed']); ?>">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label small fw-600 text-muted mb-1">CHRONOLOGICAL AGE</label>
+                            <input type="text" name="age" class="form-control" value="<?php echo htmlspecialchars($animal['age']); ?>">
+                        </div>
+                    </div>
 
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Weight (kg)</label>
-                    <input type="number" step="0.01" name="weight" class="form-control" value="<?php echo htmlspecialchars($animal['weight']); ?>">
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Health Status <span class="text-danger">*</span></label>
-                    <select name="health_status" class="form-select" required>
-                        <option value="Healthy" <?php echo ($animal['health_status'] == 'Healthy') ? 'selected' : ''; ?>>Healthy</option>
-                        <option value="Sick" <?php echo ($animal['health_status'] == 'Sick') ? 'selected' : ''; ?>>Sick</option>
-                        <option value="Under Observation" <?php echo ($animal['health_status'] == 'Under Observation') ? 'selected' : ''; ?>>Under Observation</option>
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Last Checkup Date</label>
-                    <input type="date" name="last_checkup_date" class="form-control" value="<?php echo htmlspecialchars($animal['last_checkup_date']); ?>">
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label small fw-600 text-muted mb-1">WEIGHT (KG)</label>
+                            <input type="number" step="0.01" name="weight" class="form-control text-center" value="<?php echo htmlspecialchars($animal['weight']); ?>">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label small fw-600 text-muted mb-1">HEALTH STATUS</label>
+                            <select name="health_status" class="form-select" required>
+                                <option value="Healthy" <?php echo ($animal['health_status'] == 'Healthy') ? 'selected' : ''; ?>>Healthy</option>
+                                <option value="Sick" <?php echo ($animal['health_status'] == 'Sick') ? 'selected' : ''; ?>>Sick</option>
+                                <option value="Under Observation" <?php echo ($animal['health_status'] == 'Under Observation') ? 'selected' : ''; ?>>Under Observation</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label class="form-label small fw-600 text-muted mb-1">LAST VETERINARY CHECK</label>
+                            <input type="date" name="last_checkup_date" class="form-control" value="<?php echo htmlspecialchars($animal['last_checkup_date']); ?>">
+                        </div>
+                    </div>
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="submit" class="btn btn-warning me-md-2">Update Record</button>
+                    <div class="mt-4 pt-4 border-top d-flex gap-2">
+                        <button type="submit" class="btn btn-primary flex-grow-1 fw-600 py-3 text-uppercase tracking-widest" style="font-size: 0.75rem;">
+                            <i class="fas fa-sync me-2"></i> Update Intelligence Record
+                        </button>
+                        <a href="view_animals.php" class="btn btn-light border px-4 fw-600 py-3 text-uppercase tracking-widest" style="font-size: 0.75rem;">Cancel Edit</a>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>
+</div> <!-- End container-fluid -->
 
 <?php
 include 'includes/footer.php';

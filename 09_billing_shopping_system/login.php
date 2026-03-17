@@ -40,99 +40,117 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | RetailPro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         body {
-            background-color: #343a40;
-            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            overflow: hidden;
+            background: var(--dark-bg);
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
         }
-        .login-container {
-            display: flex;
-            width: 850px;
-            height: 500px;
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 1rem 3rem rgba(0,0,0,0.5);
+        .login-card {
+            width: 100%;
+            max-width: 450px;
+            padding: 50px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        .login-info {
-            flex: 1;
-            background: #20c997;
-            background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            padding: 40px;
+        .login-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
             text-align: center;
         }
-        .login-form-container {
-            flex: 1.2;
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .login-subtitle {
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
         .form-control {
-            border-radius: 8px;
-            padding: 12px;
-        }
-        .btn-login {
-            background: #20c997;
-            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
             color: #fff;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: all 0.3s;
+            padding: 14px 18px;
+            border-radius: 12px;
         }
-        .btn-login:hover {
-            background: #1ba87e;
-            transform: translateY(-2px);
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-color);
+            color: #fff;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+        }
+        .form-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
-<div class="login-container">
-    <div class="login-info">
-        <i class="fas fa-shopping-cart fa-5x mb-4"></i>
-        <h1 class="fw-bolder">RetailPro</h1>
-        <p class="opacity-75">Next-Gen Billing & Inventory Command Center</p>
-    </div>
-    <div class="login-form-container">
-        <h3 class="fw-bold mb-4">Sign In</h3>
-        <?php if($error): ?>
-            <div class="alert alert-danger py-2 small"><?php echo $error; ?></div>
-        <?php endif; ?>
-        <form action="" method="post">
-            <div class="mb-3">
-                <label class="form-label small fw-bold text-muted">ADMIN USERNAME</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-light border-end-0"><i class="fas fa-user text-teal"></i></span>
-                    <input type="text" name="username" class="form-control border-start-0" placeholder="admin" required>
-                </div>
+<div class="login-card">
+    <h1 class="login-title">RetailPro</h1>
+    <p class="login-subtitle">Billing System</p>
+    
+    <?php if($error): ?>
+        <div class="alert alert-danger border-0 bg-danger bg-opacity-10 text-danger py-2 small mb-4"><?php echo $error; ?></div>
+    <?php endif; ?>
+
+    <form action="" method="post">
+        <div class="mb-4">
+            <label class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" placeholder="admin" required>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Password</label>
+            <div class="input-group">
+                <input type="password" name="password" id="password" class="form-control" placeholder="admin123" required>
+                <button class="btn btn-light toggle-password" type="button" data-target="password" aria-label="Show password">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
-            <div class="mb-4">
-                <label class="form-label small fw-bold text-muted">SECURITY TOKEN</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-light border-end-0"><i class="fas fa-lock text-teal"></i></span>
-                    <input type="password" name="password" class="form-control border-start-0" placeholder="admin123" required>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-login w-100 shadow-sm">INITIATE OPERATIONS</button>
-        </form>
-    </div>
+        </div>
+        <div class="d-grid mt-5">
+            <button type="submit" class="btn btn-teal py-3 fw-bold">Sign In <i class="fas fa-bolt ms-2"></i></button>
+        </div>
+    </form>
 </div>
+
+<script>
+    document.querySelectorAll('.toggle-password').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var target = document.getElementById(button.dataset.target);
+            if (!target) return;
+            var isPassword = target.type === 'password';
+            target.type = isPassword ? 'text' : 'password';
+            var icon = button.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye', !isPassword);
+                icon.classList.toggle('fa-eye-slash', isPassword);
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

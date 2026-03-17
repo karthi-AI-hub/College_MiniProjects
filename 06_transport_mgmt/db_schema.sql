@@ -52,3 +52,11 @@ INSERT INTO vehicles (vehicle_no, model, driver_name, route_id, capacity, status
 ('TN-01-CD-5678', 'Force Traveller', 'Iniyan K', 2, 14, 'Active'),
 ('TN-01-EF-9012', 'Ashok Leyland Staff Bus', 'Gowtham S', 3, 40, 'Maintenance'),
 ('TN-01-XY-4321', 'Toyota Hiace', 'Arun Kumar', 4, 12, 'Active');
+
+-- Additional Mock Vehicles
+INSERT INTO vehicles (vehicle_no, model, driver_name, route_id, capacity, status) VALUES
+('TN-02-GH-7788', 'Eicher School Bus', 'Meera N', 1, 45, 'Active'),
+('TN-02-JK-9900', 'Tempo Traveller', 'Rakesh P', 2, 12, 'Out of Service'),
+('TN-03-LM-1122', 'Mini City Bus', 'Naveen T', 3, 28, 'Active'),
+('TN-03-NO-3344', 'Force Urbania', 'Sita M', 4, 17, 'Maintenance')
+ON DUPLICATE KEY UPDATE model=VALUES(model), driver_name=VALUES(driver_name), route_id=VALUES(route_id), capacity=VALUES(capacity), status=VALUES(status);

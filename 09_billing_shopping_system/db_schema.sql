@@ -42,3 +42,12 @@ CREATE TABLE IF NOT EXISTS bills (
     bill_after_stock_update JSON, -- Optional: store bill items for audit
     bill_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Seed Bills
+INSERT INTO bills (id, customer_name, total_amount, bill_after_stock_update, bill_date) VALUES
+(1, 'Riya Sharma', 520.00, '[{"item":"Organic Milk 1L","qty":2,"price":50.00},{"item":"Greek Yogurt","qty":3,"price":85.00}]', '2026-02-09 10:15:00'),
+(2, 'Kunal Verma', 305.00, '[{"item":"Whole Wheat Bread","qty":3,"price":35.00},{"item":"Green Tea Bags","qty":1,"price":210.00}]', '2026-02-10 16:40:00'),
+(3, 'Meera Singh', 570.00, '[{"item":"Almonds 500g","qty":1,"price":450.00},{"item":"Dark Chocolate 100g","qty":1,"price":120.00}]', '2026-02-11 12:05:00'),
+(4, 'Ishaan Patel', 260.00, '[{"item":"Organic Milk 1L","qty":2,"price":50.00},{"item":"Whole Wheat Bread","qty":2,"price":35.00},{"item":"Green Tea Bags","qty":1,"price":210.00}]', '2026-02-11 18:20:00'),
+(5, 'Zara Ali', 155.00, '[{"item":"Greek Yogurt","qty":1,"price":85.00},{"item":"Dark Chocolate 100g","qty":1,"price":120.00}]', '2026-02-08 09:45:00')
+ON DUPLICATE KEY UPDATE customer_name=VALUES(customer_name), total_amount=VALUES(total_amount), bill_after_stock_update=VALUES(bill_after_stock_update), bill_date=VALUES(bill_date);

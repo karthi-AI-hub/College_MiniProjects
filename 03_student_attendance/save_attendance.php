@@ -2,21 +2,45 @@
 session_start();
 require_once 'config.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+// Check if admin is logged in
+if (!isset($_SESSION['admin'])) {
+    header("Location: mark_attendance.php?msg=auth");
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $attendance_date = $_POST['attendance_date'];
-    $attendance_data = $_POST['attendance']; // Array of student_id => status
+    $attendance_data = $_POST['attendance'] ?? []; // Array of student_id => status
+
+    $today = date('Y-m-d');
+    if ($attendance_date !== $today) {
+        header("Location: mark_attendance.php?msg=date");
+        exit();
+    }
+
+    $existing_check = $conn->prepare("SELECT COUNT(*) as total FROM attendance_records WHERE attendance_date = ?");
+    if (!$existing_check) {
+        header("Location: mark_attendance.php?msg=error");
+        exit();
+    }
+    $existing_check->bind_param("s", $attendance_date);
+    $existing_check->execute();
+    $existing_check->bind_result($existing_total);
+    $existing_check->fetch();
+    $existing_check->close();
+
+    if ($existing_total > 0) {
+        header("Location: mark_attendance.php?msg=locked");
+        exit();
+    }
 
     if (!empty($attendance_date) && !empty($attendance_data)) {
-        
-        // Prepare statement for insertion/update
-        // We use ON DUPLICATE KEY UPDATE to handle re-submission for the same day (e.g., correcting mistakes)
-        $stmt = $conn->prepare("INSERT INTO attendance_records (student_id, attendance_date, status) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE status = VALUES(status)");
+        // Prepare statement for insertion
+        $stmt = $conn->prepare("INSERT INTO attendance_records (student_id, attendance_date, status) VALUES (?, ?, ?)");
+        if (!$stmt) {
+            header("Location: mark_attendance.php?msg=error");
+            exit();
+        }
 
         // Iterate through the submitted attendance data
         // $attendance_data is an associative array where key is student_id and value is 'Present' or 'Absent'
@@ -26,8 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Execute the query for each student
             if (!$stmt->execute()) {
-                // In a real app, we might log errors here
-                // echo "Error: " . $stmt->error;
+                $stmt->close();
+                header("Location: mark_attendance.php?msg=error");
+                exit();
             }
         }
 

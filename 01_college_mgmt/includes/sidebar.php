@@ -1,31 +1,47 @@
+        <!-- Sidebar Overlay (Mobile) -->
+        <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
         <!-- Sidebar -->
-        <div class="bg-dark border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading text-white">College Admin</div>
-            <div class="list-group list-group-flush">
-                <a href="index.php" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-fw fa-tachometer-alt me-2"></i>Dashboard</a> <!-- Added icon -->
-                <a href="view_students.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'view_students.php' || basename($_SERVER['PHP_SELF']) == 'add.php' || basename($_SERVER['PHP_SELF']) == 'edit.php') ? 'active' : ''; ?> bg-dark text-white">
-                    <i class="fas fa-fw fa-user-graduate me-2"></i> Students
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading">
+                <span>College Portal</span>
+                <button class="btn btn-link text-white d-lg-none p-0" id="mobile-close-sidebar" onclick="toggleSidebar()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="list-group list-group-flush mt-3">
+                <a href="index.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>">
+                    <i class="fas fa-th-large"></i>Dashboard
                 </a>
-                <a href="logout.php" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-fw fa-sign-out-alt me-2"></i>Logout</a>
+                <a href="view_students.php" class="list-group-item list-group-item-action <?php echo (strpos(basename($_SERVER['PHP_SELF']), 'student') !== false || basename($_SERVER['PHP_SELF']) == 'add.php' || basename($_SERVER['PHP_SELF']) == 'edit.php') ? 'active' : ''; ?>">
+                    <i class="fas fa-user-graduate"></i>Students
+                </a>
+                <a href="view_departments.php" class="list-group-item list-group-item-action <?php echo (strpos(basename($_SERVER['PHP_SELF']), 'department') !== false) ? 'active' : ''; ?>">
+                    <i class="fas fa-sitemap"></i>Departments
+                </a>
+                <a href="logout.php" class="list-group-item list-group-item-action mt-auto mb-4 text-danger-hover">
+                    <i class="fas fa-power-off"></i>Logout
+                </a>
             </div>
         </div>
-        <!-- /#sidebar-wrapper -->
         
         <!-- Page Content -->
-        <!-- Start of container-fluid for main content, to be closed in footer.php -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-4 shadow-sm">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                    <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <li><span class="navbar-text">Welcome, Admin</span></li>
-                        </ul>
+                    <span class="navbar-brand d-none d-sm-block">College Management System</span>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://ui-avatars.com/api/?name=Admin&background=4f46e5&color=fff&bold=true" alt="admin" width="32" height="32" class="rounded-circle me-2">
+                                <span class="small fw-600 d-none d-md-inline">Administrator</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt me-2"></i>Sign out</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
-            <div class="container-fluid">
+            <div class="container-fluid py-4">

@@ -1,47 +1,42 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <i class="fas fa-infinite me-1 text-gold"></i>Infinity<span class="text-gold">Media</span>
-            </div>
-            <div class="list-group list-group-flush mt-4">
+            <div class="sidebar-heading">InfinityMedia</div>
+            <div class="list-group list-group-flush">
                 <a href="index.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-gem"></i> Showcase Dashboard
+                    <i class="fas fa-fw fa-layer-group me-2"></i>Showcase
                 </a>
-                <a href="view_catalog.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'view_catalog.php' || basename($_SERVER['PHP_SELF']) == 'edit.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-layer-group"></i> Media Catalog
+                <a href="view_catalog.php" class="list-group-item list-group-item-action <?php echo (in_array(basename($_SERVER['PHP_SELF']), ['view_catalog.php', 'edit_item.php'])) ? 'active' : ''; ?>">
+                    <i class="fas fa-fw fa-stream me-2"></i> Media Catalog
                 </a>
-                <a href="add.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'add.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-plus-square"></i> Curate Content
+                <a href="add_item.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'add_item.php') ? 'active' : ''; ?>">
+                    <i class="fas fa-fw fa-plus-circle me-2"></i> Curate Content
                 </a>
                 <a href="store_front.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'store_front.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-store"></i> Buyer Storefront
+                    <i class="fas fa-fw fa-store me-2"></i> Storefront
                 </a>
-                
-                <div class="mt-auto py-5 px-3">
-                    <a href="logout.php" class="btn btn-outline-gold w-100 fw-bold">
-                        <i class="fas fa-power-off me-2"></i>Sign Out
-                    </a>
-                </div>
+                <a href="logout.php" class="list-group-item list-group-item-action mt-auto border-top border-secondary">
+                    <i class="fas fa-fw fa-sign-out-alt me-2"></i>Logout
+                </a>
             </div>
         </div>
-        <!-- /#sidebar-wrapper -->
         
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-purple border-bottom border-gold shadow-sm">
+            <nav class="navbar navbar-expand-lg navbar-dark mb-4">
                 <div class="container-fluid">
-                    <button class="btn btn-gold py-1" id="menu-toggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <li class="nav-item">
-                                <span class="nav-link fw-bold text-gold">
-                                    <i class="fas fa-shield-alt me-1"></i> Admin Command Node
-                                </span>
-                            </li>
-                        </ul>
+                    <button class="btn btn-gold me-3" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                    <span class="navbar-brand d-none d-lg-block">Music Store</span>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <span class="text-muted me-3">Access: <strong class="text-white">Admin Curator</strong></span>
+                        <div class="flex-shrink-0 dropdown">
+                            <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://ui-avatars.com/api/?name=Curator&background=f59e0b&color=0f172a" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>

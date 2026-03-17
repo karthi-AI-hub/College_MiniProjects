@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3 mb-0 text-purple fw-bold">Curate Discovery Asset</h1>
-    <a href="view_catalog.php" class="btn btn-outline-purple shadow-sm"><i class="fas fa-th-large me-2"></i>Catalog Node</a>
+    <h1 class="h3 mb-0 text-purple fw-bold">Add Media Item</h1>
+    <a href="view_catalog.php" class="btn btn-outline-purple shadow-sm"><i class="fas fa-th-large me-2"></i>Catalog</a>
 </div>
 
 <?php if($message): ?>

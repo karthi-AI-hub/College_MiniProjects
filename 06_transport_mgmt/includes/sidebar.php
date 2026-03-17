@@ -1,43 +1,39 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <div class="sidebar-heading">
-                <i class="fas fa-truck-moving me-2"></i>FleetManager
-            </div>
+            <div class="sidebar-heading">Fleet Central</div>
             <div class="list-group list-group-flush">
                 <a href="index.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'index.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                    <i class="fas fa-fw fa-tachometer-alt me-2"></i>Dashboard
                 </a>
-                <a href="view_vehicles.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'view_vehicles.php' || basename($_SERVER['PHP_SELF']) == 'add.php' || basename($_SERVER['PHP_SELF']) == 'edit.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-bus"></i> Fleet Registry
+                <a href="view_vehicles.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'view_vehicles.php' || basename($_SERVER['PHP_SELF']) == 'add_vehicle.php' || basename($_SERVER['PHP_SELF']) == 'edit_vehicle.php') ? 'active' : ''; ?>">
+                    <i class="fas fa-fw fa-bus me-2"></i> Fleet Registry
                 </a>
                 <a href="routes.php" class="list-group-item list-group-item-action <?php echo (basename($_SERVER['PHP_SELF']) == 'routes.php') ? 'active' : ''; ?>">
-                    <i class="fas fa-route"></i> Route Directory
+                    <i class="fas fa-fw fa-route me-2"></i> Route Directory
                 </a>
-                <a href="logout.php" class="list-group-item list-group-item-action">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+                <a href="logout.php" class="list-group-item list-group-item-action mt-auto border-top border-secondary">
+                    <i class="fas fa-fw fa-sign-out-alt me-2"></i>Logout
                 </a>
             </div>
         </div>
-        <!-- /#sidebar-wrapper -->
         
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark-grey border-bottom shadow-sm">
+            <nav class="navbar navbar-expand-lg navbar-dark mb-4">
                 <div class="container-fluid">
-                    <button class="btn btn-yellow" id="menu-toggle"><i class="fas fa-bars"></i></button>
-
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <li class="nav-item">
-                                <span class="nav-link text-yellow fw-bold">
-                                    <i class="fas fa-user-shield me-1"></i> Fleet Admin
-                                </span>
-                            </li>
-                        </ul>
+                    <button class="btn btn-yellow me-3" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                    <span class="navbar-brand d-none d-lg-block">Transport Management</span>
+                    
+                    <div class="ms-auto d-flex align-items-center">
+                        <span class="text-muted me-3">Welcome, <strong class="text-white">Admin</strong></span>
+                        <div class="flex-shrink-0 dropdown">
+                            <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://ui-avatars.com/api/?name=Admin&background=2563eb&color=fff" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
