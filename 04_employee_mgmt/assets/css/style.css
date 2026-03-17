@@ -1,0 +1,127 @@
+/* Global Styles */
+body {
+    background-color: #f4f6f9;
+    /* Light grey/blue background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40;
+}
+
+/* Sidebar Styles */
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -16rem;
+    transition: margin .25s ease-out;
+    background-color: #343a40;
+    /* Dark Slate */
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #212529;
+    /* Darker header */
+}
+
+#sidebar-wrapper .list-group {
+    width: 16rem;
+}
+
+#sidebar-wrapper .list-group-item {
+    background-color: #343a40;
+    color: #adb5bd;
+    border: none;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #495057;
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar-wrapper .list-group-item.active {
+    background-color: #6f42c1;
+    /* Purple accent */
+    color: #fff;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -16rem;
+    }
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    transition: transform 0.2s;
+    border-top: 3px solid #6f42c1;
+    /* Purple accent */
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.bg-purple {
+    background-color: #6f42c1;
+    color: white;
+}
+
+.bg-slate {
+    background-color: #343a40;
+    color: white;
+}
+
+/* Table Styles */
+.table-hover tbody tr:hover {
+    background-color: rgba(111, 66, 193, 0.05);
+    /* Light purple hover */
+}
+
+.table thead th {
+    background-color: #343a40;
+    color: #fff;
+    border-color: #454d55;
+}
+
+/* Print Styles */
+@media print {
+
+    .no-print,
+    #sidebar-wrapper,
+    header,
+    footer,
+    .navbar {
+        display: none !important;
+    }
+
+    #page-content-wrapper {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

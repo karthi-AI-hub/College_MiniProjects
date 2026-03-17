@@ -1,0 +1,179 @@
+/* Global Styles */
+:root {
+    --primary-teal: #20c997;
+    --dark-grey: #343a40;
+    --light-bg: #f8f9fa;
+    --accent-red: #e74c3c;
+}
+
+body {
+    background-color: var(--light-bg);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: var(--dark-grey);
+}
+
+/* Primary Color Overrides */
+.text-teal {
+    color: var(--primary-teal) !important;
+}
+
+.bg-teal {
+    background-color: var(--primary-teal) !important;
+}
+
+.btn-teal {
+    background-color: var(--primary-teal);
+    border-color: var(--primary-teal);
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.btn-teal:hover {
+    background-color: #1ba87e;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(32, 201, 151, 0.3);
+}
+
+.btn-outline-teal {
+    color: var(--primary-teal);
+    border-color: var(--primary-teal);
+}
+
+.btn-outline-teal:hover {
+    background-color: var(--primary-teal);
+    color: #fff;
+}
+
+/* Sidebar Styles */
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin .25s ease-out;
+    background-color: var(--dark-grey);
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 1.5rem 1.25rem;
+    font-size: 1.4rem;
+    color: var(--primary-teal);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#sidebar-wrapper .list-group-item {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--primary-teal);
+}
+
+#sidebar-wrapper .list-group-item.active {
+    background-color: rgba(32, 201, 151, 0.1);
+    color: var(--primary-teal);
+    border-left: 4px solid var(--primary-teal);
+}
+
+#sidebar-wrapper .list-group-item i {
+    width: 25px;
+    margin-right: 10px;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+/* Dashboard Cards */
+.card-retail {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-retail:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.stats-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: rgba(32, 201, 151, 0.1);
+    color: var(--primary-teal);
+}
+
+/* Stock Alerts */
+.stock-low {
+    color: var(--accent-red);
+    font-weight: bold;
+}
+
+.stock-badge-low {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--accent-red);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* Billing Form */
+.bill-input-group .input-group-text {
+    background-color: #fff;
+    border-right: none;
+    color: #6c757d;
+}
+
+.bill-input-group .form-control {
+    border-left: none;
+}
+
+.bill-input-group .form-control:focus {
+    box-shadow: none;
+    border-color: #dee2e6;
+}
+
+/* Table Style */
+.thead-teal {
+    background-color: var(--primary-teal);
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(32, 201, 151, 0.05);
+}

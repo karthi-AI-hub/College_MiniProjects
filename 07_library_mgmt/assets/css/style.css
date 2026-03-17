@@ -1,0 +1,139 @@
+/* Global Styles */
+body {
+    background-color: #fffcf2;
+    /* Cream/Beige */
+    font-family: 'Georgia', serif;
+    color: #0a2342;
+    /* Navy Blue */
+}
+
+/* Primary Colors */
+.text-navy {
+    color: #0a2342 !important;
+}
+
+.bg-navy {
+    background-color: #0a2342 !important;
+    color: #fffcf2 !important;
+}
+
+.btn-navy {
+    background-color: #0a2342;
+    border-color: #0a2342;
+    color: #fffcf2;
+    transition: all 0.3s;
+}
+
+.btn-navy:hover {
+    background-color: #1b3a5d;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Styles */
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin .25s ease-out;
+    background-color: #0a2342;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 2rem 1.25rem;
+    font-size: 1.5rem;
+    color: #fffcf2;
+    font-weight: bold;
+    border-bottom: 2px solid #1b3a5d;
+    letter-spacing: 1px;
+}
+
+#sidebar-wrapper .list-group {
+    width: 15rem;
+}
+
+#sidebar-wrapper .list-group-item {
+    background-color: #0a2342;
+    color: #cccbc4;
+    border: none;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #1b3a5d;
+    color: #fffcf2;
+}
+
+#sidebar-wrapper .list-group-item.active {
+    background-color: #fffcf2;
+    color: #0a2342;
+    font-weight: bold;
+}
+
+#sidebar-wrapper .list-group-item i {
+    width: 25px;
+    margin-right: 12px;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+}
+
+/* Card Styles */
+.card {
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card-header {
+    background-color: #f8f7f0;
+    font-weight: bold;
+    color: #0a2342;
+}
+
+/* Table Styles */
+.table {
+    color: #0a2342;
+}
+
+.thead-navy th {
+    background-color: #0a2342;
+    color: #fffcf2;
+    border: none;
+}
+
+/* Badges */
+.badge-available {
+    background-color: #28a745;
+}
+
+.badge-issued {
+    background-color: #dc3545;
+}
+
+/* Dashboard Typography */
+.stats-number {
+    font-size: 3rem;
+    font-weight: 700;
+}
